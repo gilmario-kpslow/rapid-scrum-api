@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RapidscrumApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RapidscrumApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RapidscrumApplication.class, args);
+    }
 }
