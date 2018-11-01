@@ -1,6 +1,7 @@
 package br.com.rapidscrum.rapidscrum.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
 @Table(name = "time")
 public class Time implements Serializable {
@@ -19,34 +17,14 @@ public class Time implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "time_generator"
-	)
-	@GenericGenerator(
-		name = "time_generator",
-		strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-		parameters = {
-			@Parameter(name = "sequence_name", value = "time_sequence"),
-			@Parameter(name = "initial_value", value = "1"),
-			@Parameter(name = "increment_size", value = "1"),
-			@Parameter(name = "optmizer", value = "pooled-lo")
-		}
-	)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
-	
+
 	@Column(name = "nome", nullable = false, length = 20)
 	private String nome;
 
 	public Time() {
-		super();
-	}
-
-	public Time(Long id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
 	}
 
 	public Long getId() {
@@ -75,19 +53,17 @@ public class Time implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		Time other = (Time) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		}
+		final Time other = (Time) obj;
+		return Objects.equals(this.id, other.id);
 	}
-	
+
 }

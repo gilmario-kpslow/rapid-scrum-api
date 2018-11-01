@@ -2,7 +2,9 @@ package br.com.rapidscrum.rapidscrum.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,43 +14,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 @Entity
 @Table(name = "tarefa")
 public class Tarefa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "tarefa_generator"
-	)
-	@GenericGenerator(
-		name = "tarefa_generator",
-		strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-		parameters = {
-			@Parameter(name = "sequence_name", value = "tarefa_sequence"),
-			@Parameter(name = "initial_value", value = "1"),
-			@Parameter(name = "increment_size", value = "1"),
-			@Parameter(name = "optmizer", value = "pooled-lo")
-		}
-	)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
-	
+
 	@Column(name = "nome", nullable = false, length = 30)
 	private String nome;
-	
+
 	@Column(name = "descricao", nullable = false, length = 255)
 	private String descricao;
-	
-	@ManyToOne
-	@JoinColumn(name = "desenvolvedor_id", referencedColumnName = "id")
+
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "desenvolvedor_id", referencedColumnName = "id", nullable = false)
 	private Desenvolvedor desenvolvedor;
-	
+
 	@Column(name = "datahorainicio")
 	private LocalDateTime dataHoraInicio;
 
@@ -56,18 +42,6 @@ public class Tarefa implements Serializable {
 	private LocalDateTime dataHoraTermino;
 
 	public Tarefa() {
-		super();
-	}
-
-	public Tarefa(Long id, String nome, String descricao, Desenvolvedor desenvolvedor, LocalDateTime dataHoraInicio,
-			LocalDateTime dataHoraTermino) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.desenvolvedor = desenvolvedor;
-		this.dataHoraInicio = dataHoraInicio;
-		this.dataHoraTermino = dataHoraTermino;
 	}
 
 	public Long getId() {
@@ -128,19 +102,17 @@ public class Tarefa implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		Tarefa other = (Tarefa) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		}
+		final Tarefa other = (Tarefa) obj;
+		return Objects.equals(this.id, other.id);
 	}
-	
+
 }
