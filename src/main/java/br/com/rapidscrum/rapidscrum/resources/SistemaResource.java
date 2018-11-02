@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.rapidscrum.rapidscrum.domain.Sistema;
 import br.com.rapidscrum.rapidscrum.services.SistemaService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "sistemas")
 public class SistemaResource {
@@ -32,7 +34,7 @@ public class SistemaResource {
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
-
+	
 	@GetMapping
 	public ResponseEntity<List<Sistema>> findAll() {
 		List<Sistema> lista = sistemaService.findAll();
