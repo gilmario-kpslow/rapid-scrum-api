@@ -14,49 +14,49 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.rapidscrum.rapidscrum.domain.Sistema;
 import br.com.rapidscrum.rapidscrum.services.SistemaService;
+import org.springframework.http.MediaType;
 
 @CrossOrigin
 @RestController
 @RequestMapping(value = "sistemas")
+
 public class SistemaResource {
 
-	@Autowired
-	private SistemaService sistemaService;
+    @Autowired
+    private SistemaService sistemaService;
 
-	@PostMapping
-	public ResponseEntity<Void> save(@RequestBody Sistema sistema) {
-		sistema = sistemaService.save(sistema);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sistema.getId())
-				.toUri();
-		return ResponseEntity.created(uri).build();
-	}
-	
-	@GetMapping
-	public ResponseEntity<List<Sistema>> findAll() {
-		List<Sistema> lista = sistemaService.findAll();
-		return ResponseEntity.ok().body(lista);
-	}
+    @PostMapping
+    public ResponseEntity<Sistema> save(@RequestBody Sistema sistema) {
+        sistema = sistemaService.save(sistema);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sistema.getId())
+//				.toUri();
+        return ResponseEntity.ok().body(sistema);
+    }
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Sistema> findById(@PathVariable Long id) {
-		Sistema sistema = sistemaService.findById(id);
-		return ResponseEntity.ok().body(sistema);
-	}
+    @GetMapping
+    public ResponseEntity<List<Sistema>> findAll() {
+        List<Sistema> lista = sistemaService.findAll();
+        return ResponseEntity.ok().body(lista);
+    }
 
-	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@RequestBody Sistema sistema, @PathVariable Long id) {
-		sistema.setId(id);
-		sistema = sistemaService.update(sistema);
-		return ResponseEntity.noContent().build();
-	}
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Sistema> findById(@PathVariable Long id) {
+        Sistema sistema = sistemaService.findById(id);
+        return ResponseEntity.ok().body(sistema);
+    }
 
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-		sistemaService.deleteById(id);
-		return ResponseEntity.noContent().build();
-	}
+    @PutMapping
+    public ResponseEntity<Sistema> update(@RequestBody Sistema sistema) {
+        sistema = sistemaService.update(sistema);
+        return ResponseEntity.ok().body(sistema);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        sistemaService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

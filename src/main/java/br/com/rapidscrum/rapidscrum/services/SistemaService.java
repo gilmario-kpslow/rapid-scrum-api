@@ -12,27 +12,27 @@ import br.com.rapidscrum.rapidscrum.repositories.SistemaRepository;
 @Service
 public class SistemaService {
 
-	@Autowired
-	private SistemaRepository repository;
+    @Autowired
+    private SistemaRepository repository;
 
-	public Sistema save(Sistema sistema) {
-		return repository.save(sistema);
-	}
+    public Sistema save(Sistema sistema) {
+        return repository.save(sistema);
+    }
 
-	public List<Sistema> findAll() {
-		return repository.findAll();
-	}
+    public List<Sistema> findAll() {
+        return repository.findAll();
+    }
 
-	public Sistema findById(Long id) {
-		Optional<Sistema> sistema = repository.findById(id);
-		return sistema.orElseThrow(null);
-	}
+    public Sistema findById(Long id) {
+        Optional<Sistema> sistema = repository.findById(id);
+        return sistema.orElseThrow(null);
+    }
 
-	public Sistema update(Sistema sistema) {
-		return repository.save(sistema);
-	}
+    public Sistema update(Sistema sistema) {
+        return repository.save(sistema);
+    }
 
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
 }
