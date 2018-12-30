@@ -18,9 +18,9 @@ public class Status {
     private LocalDateTime ultimaAtualizacao;
 
     public Status() {
-        nomeApi = "RapidScrum";
+        nomeApi = "RapidScrum In Docker";
         versaoApi = "0.0.1-SNAPSHOT";
-        ultimaAtualizacao = LocalDateTime.now();
+        ultimaAtualizacao = LocalDateTime.now(); 
     }
 
     
