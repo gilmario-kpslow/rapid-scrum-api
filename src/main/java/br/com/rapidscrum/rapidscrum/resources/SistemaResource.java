@@ -1,6 +1,5 @@
 package br.com.rapidscrum.rapidscrum.resources;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rapidscrum.rapidscrum.domain.Sistema;
 import br.com.rapidscrum.rapidscrum.services.SistemaService;
-import org.springframework.http.MediaType;
 
 @CrossOrigin
 @RestController

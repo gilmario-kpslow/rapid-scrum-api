@@ -4,6 +4,7 @@ import br.com.rapidscrum.rapidscrum.domain.Sistema;
 import br.com.rapidscrum.rapidscrum.util.JsonConverter;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,10 @@ public class SistemaResourceTest {
 
     @Autowired
     private MockMvc mvc;
-
+    
+    private Long ultimoIdSalvo;
+    
+    @Before
     @Test
     public void testSave() throws Exception {
         System.out.println("save");
@@ -42,6 +46,7 @@ public class SistemaResourceTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo((MvcResult mr) -> {
                     System.out.println(mr.getResponse().getContentAsString());
                     Sistema sistema1 = new JsonConverter().fromJson(mr.getResponse().getContentAsString(), Sistema.class);
+                    ultimoIdSalvo = sistema1.getId();
                     Assert.assertNotNull(sistema1.getId());
         });
     }
@@ -57,6 +62,69 @@ public class SistemaResourceTest {
                     List<Sistema> sistema1 = new JsonConverter().fromJsonList(mr.getResponse().getContentAsString(), Sistema.class);
                     Assert.assertTrue(sistema1.size() >0);
         });
+    }
+    
+    /**
+    *
+    * @author gustavo
+    */
+    @Test
+    public void testFindById() throws Exception {
+        System.out.println("findById");
+        Long id = 1L;
+        mvc.perform(MockMvcRequestBuilders.get("/sistemas/".concat(id.toString()))
+        		.contentType(MediaType.APPLICATION_JSON)
+        		.accept(MediaType.APPLICATION_JSON))
+        		.andExpect(MockMvcResultMatchers.status().isOk()).andDo((MvcResult mr) -> {
+        			String response = mr.getResponse().getContentAsString();
+        			System.out.println(response);
+        			Sistema sistema1 = new JsonConverter().fromJson(response, Sistema.class);
+        			Assert.assertNotNull(sistema1);
+        		});
+    }
+    
+    /**
+    *
+    * @author gustavo
+    */
+    @Test
+    public void testUpdate() throws Exception {
+    	System.out.println("update");
+    	Sistema sistema = new Sistema();
+    	sistema.setId(2L);
+    	sistema.setNome("novoNome");
+    	sistema.setDescricao("novaDescricao");
+    	sistema.setSigla("NS");
+    	mvc.perform(MockMvcRequestBuilders.put("/sistemas")
+    			.content(new JsonConverter().toJson(sistema))
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.accept(MediaType.APPLICATION_JSON))
+    			.andExpect(MockMvcResultMatchers.status().isOk()).andDo((MvcResult mr) -> {
+    				String response = mr.getResponse().getContentAsString();
+    				System.out.println(response);
+    				Sistema sistema1 = new JsonConverter().fromJson(response, Sistema.class);
+    				Assert.assertNotNull(sistema1);
+    				Assert.assertEquals(sistema.getId(), sistema1.getId());
+    			});
+    }
+    
+    /**
+    *
+    * @author gustavo
+    */
+    @Test
+    public void testDeleteById() throws Exception {
+    	System.out.println("deleteById");
+    	Long id = ultimoIdSalvo;
+    	
+    	mvc.perform(MockMvcRequestBuilders.delete("/sistemas/".concat(id.toString()))
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.accept(MediaType.APPLICATION_JSON))
+    			.andExpect(MockMvcResultMatchers.status().isNoContent()).andDo((MvcResult mr) -> {
+    				String response = mr.getResponse().getContentAsString();
+    				System.out.println(response);
+    				Assert.assertEquals("", response);
+    			});
     }
 //
 //    @Test
