@@ -1,5 +1,6 @@
 package br.com.rapidscrum.rapidscrum.domain;
 
+import br.com.rapidscrum.rapidscrum.sistema.Sistema;
 import java.io.Serializable;
 import java.util.Objects;
 

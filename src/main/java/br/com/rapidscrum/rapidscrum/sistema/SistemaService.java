@@ -1,4 +1,4 @@
-package br.com.rapidscrum.rapidscrum.services;
+package br.com.rapidscrum.rapidscrum.sistema;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.rapidscrum.rapidscrum.domain.Sistema;
-import br.com.rapidscrum.rapidscrum.repositories.SistemaRepository;
 
 @Service
 public class SistemaService {

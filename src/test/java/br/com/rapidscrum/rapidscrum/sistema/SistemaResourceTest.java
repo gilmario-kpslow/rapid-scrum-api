@@ -1,6 +1,5 @@
-package br.com.rapidscrum.rapidscrum.resources;
+package br.com.rapidscrum.rapidscrum.sistema;
 
-import br.com.rapidscrum.rapidscrum.domain.Sistema;
 import br.com.rapidscrum.rapidscrum.util.JsonConverter;
 import java.util.List;
 import org.junit.Assert;
@@ -40,9 +39,9 @@ public class SistemaResourceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo((MvcResult mr) -> {
-                    System.out.println(mr.getResponse().getContentAsString());
-                    Sistema sistema1 = new JsonConverter().fromJson(mr.getResponse().getContentAsString(), Sistema.class);
-                    Assert.assertNotNull(sistema1.getId());
+            System.out.println(mr.getResponse().getContentAsString());
+            Sistema sistema1 = new JsonConverter().fromJson(mr.getResponse().getContentAsString(), Sistema.class);
+            Assert.assertNotNull(sistema1.getId());
         });
     }
 
@@ -53,9 +52,9 @@ public class SistemaResourceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andDo((MvcResult mr) -> {
-                    System.out.println(mr.getResponse().getContentAsString());
-                    List<Sistema> sistema1 = new JsonConverter().fromJsonList(mr.getResponse().getContentAsString(), Sistema.class);
-                    Assert.assertTrue(sistema1.size() >0);
+            System.out.println(mr.getResponse().getContentAsString());
+            List<Sistema> sistema1 = new JsonConverter().fromJsonList(mr.getResponse().getContentAsString(), Sistema.class);
+            Assert.assertTrue(sistema1.size() > 0);
         });
     }
 //
