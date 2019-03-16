@@ -9,6 +9,8 @@
 .settings
 .springBeans
 .sts4-cache
+.settings
+.mvn
 
 ### IntelliJ IDEA ###
 .idea
@@ -24,3 +26,4 @@
 /nbdist/
 /.nb-gradle/
 /nbproject/
+/nbactions.xml
