@@ -10,15 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RapidscrumApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.setProperty("spring.devtools.restart.enabled", "true");
+        new RapidscrumApplication().iniciandoDb();
         SpringApplication.run(RapidscrumApplication.class, args);
     }
 
     private void iniciandoDb() throws IOException, ServerAcl.AclFormatException {
         HsqlProperties p = new HsqlProperties();
-        p.setProperty("server.database.0", "file:rapiddb");
-        p.setProperty("server.dbname.0", "rapiddb");
+        p.setProperty("server.database.0", "file:rapidscrumdb");
+        p.setProperty("server.dbname.0", "rapidscrumdb");
         // set up the rest of properties
 
         // alternative to the above is

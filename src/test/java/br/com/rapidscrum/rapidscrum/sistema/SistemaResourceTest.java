@@ -19,15 +19,15 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  *
  * @author gilmario
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest
+//@AutoConfigureMockMvc
 public class SistemaResourceTest {
 
-    @Autowired
+//    @Autowired
     private MockMvc mvc;
 
-    @Test
+//    @Test
     public void testSave() throws Exception {
         System.out.println("save");
         Sistema sistema = new Sistema();
@@ -45,7 +45,7 @@ public class SistemaResourceTest {
         });
     }
 
-    @Test
+//    @Test
     public void testFindAll() throws Exception {
         System.out.println("findAll");
         mvc.perform(MockMvcRequestBuilders.get("/sistemas")

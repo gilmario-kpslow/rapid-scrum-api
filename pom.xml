@@ -22,8 +22,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--        <maven.compiler.source>1.8</maven.compiler.source>-->
-        <!--<maven.compiler.target>1.8</maven.compiler.target>-->
+        <maven.compiler.source>12</maven.compiler.source>
+        <maven.compiler.target>12</maven.compiler.target>
         <java.version>12</java.version>
     </properties>
 
@@ -58,7 +58,6 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <!-- <version>6.0.14.Final</version> -->
         </dependency>
 
         <dependency>
@@ -120,6 +119,15 @@
                     </dependency>
                 </dependencies>
             </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>12</release> <!-- maven.compiler.release -->
+                    <source>12</source>   <!-- maven.compiler.source  -->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
