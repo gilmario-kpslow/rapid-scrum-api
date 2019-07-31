@@ -18,7 +18,7 @@ public class RapidscrumApplication {
 
     private void iniciandoDb() throws IOException, ServerAcl.AclFormatException {
         HsqlProperties p = new HsqlProperties();
-        p.setProperty("server.database.0", "file:rapidscrumdb");
+        p.setProperty("server.database.0", "file:db/rapidscrumdb");
         p.setProperty("server.dbname.0", "rapidscrumdb");
         // set up the rest of properties
 
