@@ -32,6 +32,13 @@ public class Usuario extends GenericEntity implements Serializable {
     @NotBlank
     @Email
     private String email;
+    @Column(length = 40, nullable = false)
+    @NotBlank
+    @Length(min = 8)
+    private String username;
+
+    public Usuario() {
+    }
 
     public String getNome() {
         return nome;
@@ -55,6 +62,14 @@ public class Usuario extends GenericEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }

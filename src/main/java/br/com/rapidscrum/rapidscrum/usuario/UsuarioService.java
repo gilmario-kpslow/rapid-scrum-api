@@ -15,4 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService extends GenericService<Usuario, UsuarioRepository> {
 
+    public Usuario login(String username, String password) {
+        return this.repository.findByUsername(username);
+    }
+
 }
