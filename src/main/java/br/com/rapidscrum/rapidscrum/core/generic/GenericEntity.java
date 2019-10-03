@@ -5,6 +5,7 @@
  */
 package br.com.rapidscrum.rapidscrum.core.generic;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.MappedSuperclass;
  * @author gilmario
  */
 @MappedSuperclass
-public abstract class GenericEntity {
+public abstract class GenericEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

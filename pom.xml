@@ -6,7 +6,7 @@
 
     <groupId>br.com.rapidscrum</groupId>
     <artifactId>rapidscrum</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>rapidscrum</name>
@@ -38,6 +38,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <!--        <dependency>
             <groupId>org.flywaydb</groupId>
@@ -47,6 +51,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-websockets-jsr</artifactId>
         </dependency>
 
         <dependency>
@@ -63,6 +72,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
         <dependency>
@@ -101,6 +115,14 @@
                         <version>1.2.8.RELEASE</version>
                     </dependency>
                 </dependencies>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
 
@@ -126,6 +148,7 @@
                 <configuration>
                     <release>12</release> <!-- maven.compiler.release -->
                     <source>12</source>   <!-- maven.compiler.source  -->
+                    <target>12</target>
                 </configuration>
             </plugin>
         </plugins>

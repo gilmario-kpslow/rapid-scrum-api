@@ -17,12 +17,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    Logger logger = Logger.getLogger(WebConfig.class.getName());
+    private Logger logger = Logger.getLogger(WebConfig.class.getName());
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         logger.info("Iniciando Configuração---------------------------------------------------------------------------");
-        registry.addMapping("/**")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
     }
 }
