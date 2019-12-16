@@ -5,12 +5,6 @@
  */
 package br.com.rapidscrum.rapidscrum;
 
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 /**
  *
  * @author gilmario
