@@ -6,6 +6,7 @@
 package br.com.rapidscrum.rapidscrum;
 
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,14 +15,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  * @author gilmario
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
-
-    private Logger logger = Logger.getLogger(WebConfig.class.getName());
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        logger.info("Iniciando Configuração---------------------------------------------------------------------------");
-        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
-    }
-}
+//@Configuration
+//public class WebConfig implements WebMvcConfigurer {
+//
+//    private Logger logger = Logger.getLogger(WebConfig.class.getName());
+//
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        logger.info("Iniciando Configuração---------------------------------------------------------------------------");
+//        registry.addMapping("/**").allowedOrigins("**", "*").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+//    }
+//
+//    @PostConstruct
+//    private void postCOntruct() {
+//        System.out.println("Inicializando");
+//    }
+//}

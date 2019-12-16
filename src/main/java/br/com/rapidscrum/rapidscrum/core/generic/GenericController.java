@@ -5,6 +5,7 @@
  */
 package br.com.rapidscrum.rapidscrum.core.generic;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public abstract class GenericController<E extends GenericEntity, R extends Gener
 
     private Sort stringToSort(String ordenacao) {
         String[] lista = ordenacao.split("\\,");
-        List<Sort.Order> c = List.of(lista).stream()
+        List<Sort.Order> c = Arrays.asList(lista).stream()
                 .filter(s -> s.trim().length() > 0)
                 .map(s -> Sort.Order.asc(s)).collect(Collectors.toList());
         return Sort.by(c);

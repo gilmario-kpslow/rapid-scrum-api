@@ -19,4 +19,8 @@ public class UsuarioService extends GenericService<Usuario, UsuarioRepository> {
         return this.repository.findByUsername(username);
     }
 
+    public Usuario loadByUsername(String username) {
+        return this.repository.findByUsername(username);
+    }
+
 }
