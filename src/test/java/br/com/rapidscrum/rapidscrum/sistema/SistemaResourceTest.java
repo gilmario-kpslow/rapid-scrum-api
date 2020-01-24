@@ -1,6 +1,7 @@
 package br.com.rapidscrum.rapidscrum.sistema;
 
-import br.com.rapidscrum.rapidscrum.util.JsonConverter;
+import br.com.rapidscrum.sistema.Sistema;
+import br.com.rapidscrum.util.JsonConverter;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
