@@ -9,7 +9,6 @@ import br.com.rapidscrum.usuario.Usuario;
 import br.com.rapidscrum.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @author gilmario
  */
 @RestController
-@RequestMapping("login")
+@RequestMapping("autenticar")
 public class LoginController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private LoginService service;
 
     @PostMapping
-    public Usuario login(@RequestBody LoginRequest login) {
-        return this.usuarioService.login(login.getUsername(), login.getPassword());
+    public LoginResponse login(@RequestBody LoginRequest login) {
+        return this.service.login(login.getUsername(), login.getPassword());
     }
 }

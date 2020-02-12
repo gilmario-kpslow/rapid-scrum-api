@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.rapidscrum.usuario;
 
 import br.com.rapidscrum.core.generic.GenericEntity;
@@ -27,7 +22,7 @@ public class Usuario extends GenericEntity implements Serializable {
     @Column(length = 40, nullable = false)
     @NotBlank
     @Length(min = 3)
-    private String sobrenome;
+    private String nomeCompleto;
     @Column(length = 255, nullable = false, unique = true)
     @NotBlank
     @Email
@@ -48,14 +43,6 @@ public class Usuario extends GenericEntity implements Serializable {
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -70,6 +57,14 @@ public class Usuario extends GenericEntity implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
 
 }

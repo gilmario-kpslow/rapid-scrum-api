@@ -1,60 +1,37 @@
 package br.com.rapidscrum;
 
-import java.io.IOException;
-import org.hsqldb.Server;
-import org.hsqldb.persist.HsqlProperties;
-import org.hsqldb.server.ServerAcl;
+import br.com.rapidscrum.usuario.Usuario;
+import br.com.rapidscrum.usuario.UsuarioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-//@EnableAuthorizationServer
 @SpringBootApplication
-public class RapidscrumApplication extends SpringBootServletInitializer {
+public class RapidscrumApplication implements ApplicationContextInitializer {
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(RapidscrumApplication.class);
-    }
-
-    private static void iniciandoDb() throws IOException, ServerAcl.AclFormatException {
-        System.out.println("INiciando BANCO DE DADOS");
-        HsqlProperties p = new HsqlProperties();
-        p.setProperty("server.database.0", "file:db/rapidscrumdb");
-        p.setProperty("server.dbname.0", "rapidscrumdb");
-
-        p.setProperty(".html", "text/html");
-
-        // set up the rest of properties
-        // alternative to the above is
-        Server server = new Server();
-        server.setProperties(p);
-        server.setWebRoot("/");
-        server.setSilent(true);
-        server.setPort(9001);
-        server.start();
+    public static void main(String... args) throws Exception {
+        SpringApplication app = new SpringApplication(RapidscrumApplication.class);
+        app.addInitializers(new RapidscrumApplication());
+        app.run(args);
     }
 
     @Bean
-    CommandLineRunner init() {
+    CommandLineRunner init(UsuarioService service) {
         return args -> {
-            //new RapidscrumApplication().iniciandoDb();
-            System.out.println("OK-------------------------------");
-//              initUsers(userRepository, passwordEncoder);;
-            //initProdutos(produtoRepository);
+            Usuario admin = new Usuario();
+            admin.setEmail("admin@gmail.com");
+            admin.setNome("Admin");
+            admin.setUsername("Admin");
+            admin.setNomeCompleto("Usuario Administrador da Silva");
         };
     }
 
-//    private void initUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-//        Usuario admin = new Usuario();
-//        admin.setEmail("admin@gmail.com");
-//        admin.setPassword(passwordEncoder.encode("123456"));
-//        admin.setProfile(ProfileEnum.ROLE_ADMIN);
-//
-//        Usuario find = userRepository.findByEmail("admin@gmail.com");
-//        if (Objects.isNull(find)) {
-//            userRepository.save(admin);
-//        }
-//    }
+    @Override
+    public void initialize(ConfigurableApplicationContext c) {
+        HSQLDBStarter.start();
+    }
+
 }

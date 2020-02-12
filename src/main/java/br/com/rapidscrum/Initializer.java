@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.rapidscrum.config;
-
-import org.springframework.context.annotation.Configuration;
+package br.com.rapidscrum;
 
 /**
  *
  * @author gilmario
  */
-@Configuration
-public class AutorizationServerConfigure {
+public class Initializer {
 
+    public static void main(String[] args) {
+        System.out.println("br.com.rapidscrum.Initializer.main()");
+    }
 }
