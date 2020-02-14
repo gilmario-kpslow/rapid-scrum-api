@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.rapidscrum.config;
+package br.com.rapidscrum.core.exception;
 
-import br.com.rapidscrum.core.exception.MensagemException;
-import br.com.rapidscrum.core.exception.StatusMensagem;
 import javax.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +28,7 @@ public class ResourceExcptionInterceptor extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<MensagemException> exception(Exception ex, WebRequest request) {
+        logger.error(ex, ex);
         MensagemException errorDetails = new MensagemException(ex.getMessage(), request.getDescription(false), StatusMensagem.ERRO);
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }

@@ -25,10 +25,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class JWTUtil {
 
-    @Value("jwt-token-validade")
+    @Value("${jwt-token-validade}")
     private String validadeToken;
 
-    @Value("jwt-token-secret")
+    @Value("${jwt-token-secret}")
     private String tokenSecret;
 
     public String getUsernameFromToken(String token) {

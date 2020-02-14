@@ -5,8 +5,6 @@
  */
 package br.com.rapidscrum.seguranca;
 
-import br.com.rapidscrum.usuario.Usuario;
-import br.com.rapidscrum.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

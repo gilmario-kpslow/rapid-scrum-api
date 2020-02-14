@@ -34,14 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityRequestFilter securityRequestFilter;
 
+//    @Autowired
+//    protected void configureGlobal(AuthenticationManagerBuilder amb) throws Exception {
+//        amb.userDetailsService(usuarioDetalhesService).passwordEncoder(passwordEncoder());
+//    }
     @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder amb) throws Exception {
-        amb.userDetailsService(usuarioDetalhesService).passwordEncoder(passwordEncoder());
+    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(this.usuarioDetalhesService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12);
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -54,8 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic()
                 .disable()
+                .csrf().disable()
+                .addFilterBefore(securityRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/", "/healt", "/auth", "/game", "status", "autenticar")
+                .antMatchers("/", "/healt", "/auth", "/game", "/status", "/autenticar")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -65,6 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(securityRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers().cacheControl();
     }
 }

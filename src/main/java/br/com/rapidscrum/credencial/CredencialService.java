@@ -1,6 +1,5 @@
 package br.com.rapidscrum.credencial;
 
-import br.com.rapidscrum.core.generic.GenericService;
 import br.com.rapidscrum.usuario.Usuario;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
