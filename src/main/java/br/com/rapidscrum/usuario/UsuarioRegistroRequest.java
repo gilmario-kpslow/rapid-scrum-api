@@ -12,6 +12,15 @@ public class UsuarioRegistroRequest {
     private String senha;
     private String username;
 
+    public Usuario getUsuario() {
+        Usuario usuario = new Usuario();
+        usuario.setEmail(email);
+        usuario.setNome(nome);
+        usuario.setNomeCompleto(nomeCompleto);
+        usuario.setUsername(username);
+        return usuario;
+    }
+
     public String getNome() {
         return nome;
     }

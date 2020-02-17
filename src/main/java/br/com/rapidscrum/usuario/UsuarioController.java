@@ -13,14 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("usuario")
 public class UsuarioController extends GenericController<Usuario, UsuarioRepository, UsuarioService> {
 
-    @Override
-    public Usuario salvar(Usuario e) {
-        return super.salvar(e);
-    }
-
-    @GetMapping
-    public Usuario registrar(UsuarioRegistroRequest registro) {
-
+    @GetMapping(value = "registrar")
+    public void registrar(UsuarioRegistroRequest registro) {
+        this.service.registrar(registro);
     }
 
 }

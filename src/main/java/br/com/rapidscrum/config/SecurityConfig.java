@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .addFilterBefore(securityRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/", "/healt", "/auth", "/game", "/status", "/autenticar")
+                .antMatchers("/", "/healt", "/auth", "/game", "/status", "/autenticar", "/registrar")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public abstract class GenericController<E extends GenericEntity, R extends JpaRepository<E, Long>, S extends GenericService<E, R>> {
 
     @Autowired
-    private S service;
+    protected S service;
 
     public S getService() {
         return service;
