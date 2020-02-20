@@ -16,6 +16,10 @@ public class HSQLDBStarter {
 
     private static Server server;
 
+    public static void main(String[] args) {
+        start();
+    }
+
     public static void start() {
         if (Objects.isNull(server)) {
             HsqlProperties p = new HsqlProperties();

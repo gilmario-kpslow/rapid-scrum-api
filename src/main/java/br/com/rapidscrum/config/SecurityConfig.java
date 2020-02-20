@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .addFilterBefore(securityRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/", "/healt", "/auth", "/game", "/status", "/autenticar", "/registrar")
+                .antMatchers("/", "/healt", "/auth", "/game", "/status", "/autenticar", "/usuario/registrar")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -73,4 +73,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers().cacheControl();
     }
+
 }

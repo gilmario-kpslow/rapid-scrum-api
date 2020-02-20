@@ -6,6 +6,8 @@
 package br.com.rapidscrum.seguranca;
 
 import br.com.rapidscrum.seguranca.jwt.JWTUtil;
+import br.com.rapidscrum.usuario.Usuario;
+import br.com.rapidscrum.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,9 @@ public class LoginService {
     private UsuarioDetalhesService usuarioDetalhesService;
 
     @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
     private JWTUtil jWTUtil;
 
     @Autowired
@@ -30,8 +35,9 @@ public class LoginService {
     public LoginResponse login(String username, String password) {
         authenticate(username, password);
         final UsuarioDetalhes detalhes = usuarioDetalhesService.loadUserByUsername(username);
+        final Usuario usuario = this.usuarioService.findByUsername(username);
         final String token = jWTUtil.generateToken(detalhes);
-        return new LoginResponse(token);
+        return new LoginResponse(token, usuario.getNome());
     }
 
     private void authenticate(String username, String password) {

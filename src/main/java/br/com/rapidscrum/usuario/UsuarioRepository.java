@@ -15,11 +15,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    public Usuario findByUsername(String username);
+    Usuario findByUsername(String username);
 
     @Query("SELECT u.username as username, c.password as password, c.ativo as accountNonExpired, c.ativo as accountNonLocked, c.ativo as enabled, c.ativo as credentialsNonExpired FROM Credencial c JOIN c.usuario u where u.username = :username")
     UsuarioDetalhes getUserDetails(@Param("username") String username);
 
     Optional<Boolean> existsByUsername(String username);
+
+    Optional<Boolean> existsByEmail(String email);
 
 }
