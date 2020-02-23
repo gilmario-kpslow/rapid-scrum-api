@@ -6,6 +6,7 @@
 package br.com.rapidscrum.seguranca;
 
 import br.com.rapidscrum.seguranca.jwt.JWTUtil;
+import br.com.rapidscrum.seguranca.jwt.RequestUtil;
 import io.undertow.security.api.SecurityContext;
 import java.io.IOException;
 import java.util.Objects;
@@ -27,16 +28,16 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class SecurityRequestFilter extends OncePerRequestFilter {
 
-    private static final String AUTHORIZATION_HEADER = "Authorization";
-
     @Autowired
     private JWTUtil jWTUtil;
+    @Autowired
+    private RequestUtil requestUtil;
     @Autowired
     private UsuarioDetalhesService detalhesService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        final String tokenHeader = request.getHeader(AUTHORIZATION_HEADER);
+        final String tokenHeader = requestUtil.getTokenFromHeader(request);
 
         String username = null;
         String token = null;

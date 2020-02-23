@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.rapidscrum;
+package br.com.rapidscrum.preferencia;
+
+import br.com.rapidscrum.projeto.Projeto;
+import br.com.rapidscrum.usuario.Usuario;
 
 /**
  *
  * @author gilmario
  */
-public class Initializer {
+public class ProjetoPreferido {
 
-    public static void main(String[] args) {
-        System.out.println("br.com.rapidscrum.Initializer.main()");
-    }
+    private Usuario usuario;
+    private Projeto projeto;
+
 }

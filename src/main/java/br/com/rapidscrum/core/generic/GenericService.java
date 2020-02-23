@@ -1,5 +1,8 @@
 package br.com.rapidscrum.core.generic;
 
+import br.com.rapidscrum.seguranca.UsuarioLogado;
+import br.com.rapidscrum.seguranca.UsuarioLogadoCriado;
+import br.com.rapidscrum.usuario.Usuario;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,6 +24,9 @@ public abstract class GenericService<E extends GenericEntity, R extends JpaRepos
 
     @Autowired
     protected R repository;
+
+    @UsuarioLogado
+    private UsuarioLogadoCriado usuario;
 
     public E salvar(E e) {
         return this.repository.save(e);
@@ -52,6 +58,10 @@ public abstract class GenericService<E extends GenericEntity, R extends JpaRepos
 
     public Optional<E> encontrarPor(Long id) {
         return this.repository.findById(id);
+    }
+
+    public Usuario getUsuarioLogado() {
+        return usuario.getUsuario();
     }
 
 }

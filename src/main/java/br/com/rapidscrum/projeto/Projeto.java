@@ -1,9 +1,12 @@
 package br.com.rapidscrum.projeto;
 
 import br.com.rapidscrum.core.generic.GenericEntity;
+import br.com.rapidscrum.usuario.Usuario;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
@@ -22,6 +25,9 @@ public class Projeto extends GenericEntity implements Serializable {
     @Column(length = 2048, nullable = true)
     @NotBlank
     private String descricao;
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne
+    private Usuario owner;
 
     public String getNome() {
         return nome;
@@ -45,6 +51,14 @@ public class Projeto extends GenericEntity implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Usuario getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Usuario owner) {
+        this.owner = owner;
     }
 
 }

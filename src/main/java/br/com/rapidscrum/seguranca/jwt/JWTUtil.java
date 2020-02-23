@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,20 @@ public class JWTUtil {
 
     @Value("${jwt-token-secret}")
     private String tokenSecret;
+
+    @Autowired
+    private RequestUtil requestUtil;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    public String getUsernameFromToken() {
+        return getUsernameFromToken(request);
+    }
+
+    public String getUsernameFromToken(HttpServletRequest request) {
+        return getUsernameFromToken(requestUtil.getTokenFromHeader(request));
+    }
 
     public String getUsernameFromToken(String token) {
         return getClaimsFromToken(token, Claims::getSubject);

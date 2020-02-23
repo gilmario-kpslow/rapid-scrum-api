@@ -15,4 +15,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProjetoService extends GenericService<Projeto, ProjetoRepository> {
 
+    @Override
+    public Projeto salvar(Projeto e) {
+        e.setOwner(getUsuarioLogado());
+        return super.salvar(e);
+    }
+
 }

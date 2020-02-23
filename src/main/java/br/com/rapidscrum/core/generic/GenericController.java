@@ -5,6 +5,8 @@
  */
 package br.com.rapidscrum.core.generic;
 
+import br.com.rapidscrum.seguranca.UsuarioLogadoService;
+import br.com.rapidscrum.usuario.Usuario;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

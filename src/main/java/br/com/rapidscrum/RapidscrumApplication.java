@@ -9,22 +9,14 @@ import java.util.Optional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class RapidscrumApplication implements ApplicationContextInitializer, ApplicationListener<ContextClosedEvent> {
+public class RapidscrumApplication {
 
     public static void main(String... args) throws Exception {
-
-        SpringApplication app = new SpringApplication(RapidscrumApplication.class);
-        app.addInitializers(new RapidscrumApplication());
-        app.addListeners(new RapidscrumApplication());
-        app.run(args);
+        SpringApplication.run(RapidscrumApplication.class, args);
     }
 
     @Bean
@@ -45,16 +37,6 @@ public class RapidscrumApplication implements ApplicationContextInitializer, App
             }
 
         };
-    }
-
-    @Override
-    public void initialize(ConfigurableApplicationContext c) {
-        //HSQLDBStarter.start();
-    }
-
-    @Override
-    public void onApplicationEvent(ContextClosedEvent e) {
-        //HSQLDBStarter.restart();
     }
 
 }
