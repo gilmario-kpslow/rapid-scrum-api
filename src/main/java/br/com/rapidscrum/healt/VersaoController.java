@@ -27,7 +27,7 @@ public class VersaoController {
         versao.setDataBuild(LocalDateTime.ofInstant(properties.getTime(), ZoneId.systemDefault()));
     }
 
-    @GetMapping(value = {"", "healt", "status"})
+    @GetMapping(value = {"", "healt", "status", "versao"})
     public Versao getInfo() {
         return versao;
     }

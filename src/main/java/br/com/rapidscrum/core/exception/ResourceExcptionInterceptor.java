@@ -28,9 +28,15 @@ public class ResourceExcptionInterceptor extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<MensagemException> exception(Exception ex, WebRequest request) {
-        logger.error(ex, ex);
+        logger.trace(ex);
         MensagemException errorDetails = new MensagemException(ex.getMessage(), request.getDescription(false), StatusMensagem.ERRO);
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+//    @ExceptionHandler(Exception.class)
+//    public final ResponseEntity<MensagemException> exception(Exception ex, WebRequest request) {
+//        logger.trace(ex);
+//        MensagemException errorDetails = new MensagemException(ex.getMessage(), request.getDescription(false), StatusMensagem.ERRO);
+//        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

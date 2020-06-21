@@ -52,7 +52,7 @@ public abstract class GenericService<E extends GenericEntity, R extends JpaRepos
         QueryModel query = new QueryModel(queryParam);
         E model = GenericUtils.queryParaModel(queryParam, GenericUtils.getClassModel(this.getClass()));
         Example<E> example = Example.of(model, ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
-        PageRequest page = PageRequest.of(query.getPagina(), query.getLimite(), query.getDirecionamento(), query.getOrdenacao());
+        PageRequest page = query.pageOf();
         return this.repository.findAll(example, page);
     }
 

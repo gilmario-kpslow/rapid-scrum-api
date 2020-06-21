@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.rapidscrum.core.generic;
 
-import br.com.rapidscrum.seguranca.UsuarioLogadoService;
-import br.com.rapidscrum.usuario.Usuario;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +45,11 @@ public abstract class GenericController<E extends GenericEntity, R extends JpaRe
     @GetMapping
     public List<E> listar() {
         return this.service.listar();
+    }
+
+    @GetMapping("page")
+    public Page<E> listar(@RequestParam HashMap<String, String> queryParam) throws Exception {
+        return this.service.listar(queryParam);
     }
 
     @GetMapping(value = "ordenado")

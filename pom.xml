@@ -6,7 +6,7 @@
 
     <groupId>br.com.rapidscrum</groupId>
     <artifactId>rapidscrum</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>rapidscrum</name>
@@ -22,8 +22,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
         <java.version>12</java.version>
     </properties>
 
@@ -44,7 +44,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-       
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
