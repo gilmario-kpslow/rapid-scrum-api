@@ -31,7 +31,6 @@ public class JsonConverter {
             return Collections.EMPTY_LIST;
         }
         CollectionType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, classe);
-        log("fromjsonlist", json);
         return objectMapper.readValue(json, javaType);
     }
 
@@ -39,17 +38,17 @@ public class JsonConverter {
         if (Objects.isNull(json) || "".equals(json)) {
             return null;
         }
-        log("fromjson", json);
         return objectMapper.readValue(json, classe);
     }
 
     public String toJson(Object o) throws IOException {
         String dados = objectMapper.writeValueAsString(o);
-        log("tojson", dados);
         return dados;
     }
 
-    private void log(String metodo, String dados) throws IOException {
+}
+
+//    private void log(String metodo, String dados) throws IOException {
 //            LocalDateTime local = LocalDateTime.now();
 //            String filename = Integer.toString(local.getYear())
 //                    .concat(Integer.toString(local.getMonthValue()))
@@ -60,5 +59,4 @@ public class JsonConverter {
 //                    .concat(Integer.toString(local.getNano()))
 //                    .concat(".json");
 //            Files.write(Paths.get(".", metodo.concat(filename)), dados.getBytes());
-    }
-}
+//    }
