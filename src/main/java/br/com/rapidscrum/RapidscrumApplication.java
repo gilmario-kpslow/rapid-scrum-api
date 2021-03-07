@@ -31,6 +31,7 @@ public class RapidscrumApplication {
                 admin.setNomeCompleto("Usuario Administrador da Silva 350");
                 service.salvar(admin);
                 Credencial credencial = credencialService.create(admin, "123456789");
+                System.out.println("br.com.rapidscrum.RapidscrumApplication.init()");
             }
         };
     }
